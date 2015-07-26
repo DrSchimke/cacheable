@@ -11,10 +11,10 @@ class CacheableClass implements Cacheable
 
     public $callcount = 0;
 
-    public function fetchFoo($param)
+    public function getDouble($param)
     {
         ++$this->callcount;
-        
-        return $param;
+
+        return 2 * $param;
     }
 }

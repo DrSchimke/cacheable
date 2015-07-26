@@ -8,7 +8,7 @@
 namespace Sci\Cacheable;
 
 use Doctrine\Common\Cache\Cache;
-use Sci\Cacheable\Proxy;
+use Sci\Cacheable\CacheProxy;
 
 trait CacheTrait
 {
@@ -19,8 +19,8 @@ trait CacheTrait
     private $lifetime;
 
     /**
-     * @param CacheProvider $cache
-     * @param int           $lifetime
+     * @param Cache $cache
+     * @param int   $lifetime
      */
     public function setCache(Cache $cache, $lifetime = 0)
     {
@@ -42,10 +42,10 @@ trait CacheTrait
      *
      * @param int|null $lifetime
      *
-     * @return Proxy
+     * @return CacheProxy
      */
     private function createCacheProxy($lifetime)
     {
-        return new Proxy($this->cache, $this, is_null($lifetime) ? $this->lifetime : $lifetime);
+        return new CacheProxy($this->cache, $this, is_null($lifetime) ? $this->lifetime : $lifetime);
     }
 }
