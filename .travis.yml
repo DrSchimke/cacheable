@@ -1,0 +1,19 @@
+language: php
+
+env:
+  - OPCODE_CACHE=apc
+
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+  - nightly
+  - hhvm
+
+before_script:
+  - composer self-update
+  - composer update
+
+script:
+  - bin/phpcs --standard=PSR2 lib/
+  - bin/phpunit
