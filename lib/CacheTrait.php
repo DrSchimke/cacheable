@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Created on 09.01.14
+ * Created on 09.01.14.
  *
  * @author Sascha Schimke <sascha@schimke.me>
  */
@@ -8,7 +9,6 @@
 namespace Sci\Cacheable;
 
 use Doctrine\Common\Cache\Cache;
-use Sci\Cacheable\CacheProxy;
 
 trait CacheTrait
 {
@@ -24,7 +24,7 @@ trait CacheTrait
      */
     public function setCache(Cache $cache, $lifetime = 0)
     {
-        $this->cache    = $cache;
+        $this->cache = $cache;
         $this->lifetime = $lifetime;
     }
 
@@ -39,7 +39,6 @@ trait CacheTrait
     }
 
     /**
-     *
      * @param int|null $lifetime
      *
      * @return CacheProxy

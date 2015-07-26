@@ -6,7 +6,7 @@ use Doctrine\Common\Cache\Cache;
 
 class CacheProxy
 {
-    /** @var boolean */
+    /** @var bool */
     private static $debug = false;
 
     /** @var Cache */
@@ -29,13 +29,13 @@ class CacheProxy
      */
     public function __construct(Cache $cache, Cacheable $object, $lifetime = 0)
     {
-        $this->cache    = $cache;
-        $this->object   = $object;
+        $this->cache = $cache;
+        $this->object = $object;
         $this->lifetime = $lifetime;
     }
 
     /**
-     * @param boolean $debug
+     * @param bool $debug
      */
     public static function setDebug($debug)
     {
@@ -64,7 +64,7 @@ class CacheProxy
     }
 
     /**
-     * Creates cache key for result of method $name with $arguments
+     * Creates cache key for result of method $name with $arguments.
      *
      * @param string $name
      * @param array  $arguments

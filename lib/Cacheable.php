@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Classes implementing this interface are able to cache their respective query methods.
  *
