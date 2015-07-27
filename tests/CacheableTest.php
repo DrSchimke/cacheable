@@ -99,16 +99,28 @@ class CacheableTest extends \PHPUnit_Framework_TestCase
         // arrange
         $cacheProvider = new ArrayCache();
 
-        $lifetime = 300;
-        $shorterLifetime = 60;
-
         $sut = new CacheableClass();
-        $sut->setCache($cacheProvider, $lifetime);
+        $sut->setCache($cacheProvider);
 
         // act
-        $sut->cache($shorterLifetime)->getDouble(123);
+        $a1 = $sut->cache()->getDouble(123);
+        $key1 = $cacheProvider->lastId;
+        $a2 = $sut->cache()->getDouble(123);
+        $key2 = $cacheProvider->lastId;
+
+        $b1 = $sut->cache()->getDouble(234);
+        $key3 = $cacheProvider->lastId;
+        $b2 = $sut->cache()->getDouble(234);
+        $key4 = $cacheProvider->lastId;
 
         // assert
-        $this->assertEquals($shorterLifetime, $cacheProvider->lastLifetime);
+        $this->assertEquals(246, $a1);
+        $this->assertEquals(246, $a2);
+        $this->assertEquals(468, $b1);
+        $this->assertEquals(468, $b2);
+
+        $this->assertEquals($key1, $key2);
+        $this->assertEquals($key3, $key4);
+        $this->assertNotEquals($key1, $key3);
     }
 }

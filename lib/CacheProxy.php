@@ -75,6 +75,6 @@ class CacheProxy
     {
         $key = sprintf('%s::%s(%s)', get_class($this->object), $name, serialize($arguments));
 
-        return self::$debug ? $key : md5($key);
+        return self::$debug ? $key : sha1($key);
     }
 }
