@@ -1,9 +1,11 @@
 <?php
-
-/**
- * Created on 09.01.14.
+/*
+ * This file is part of the sci/cacheable package.
  *
- * @author Sascha Schimke <sascha@schimke.me>
+ * (c) Sascha Schimke <sascha@schimke.me>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Sci\Cacheable;
