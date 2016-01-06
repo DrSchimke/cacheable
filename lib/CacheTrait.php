@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Sci\Cacheable;
 
 use Psr\Cache\CacheItemPoolInterface;
@@ -23,7 +22,7 @@ trait CacheTrait
 
     /**
      * @param CacheItemPoolInterface $cache
-     * @param int   $lifetime
+     * @param int                    $lifetime
      */
     public function setCache(CacheItemPoolInterface $cache, $lifetime = 0)
     {

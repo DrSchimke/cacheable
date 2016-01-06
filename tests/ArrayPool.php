@@ -8,15 +8,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Sci\Tests\Cacheable;
 
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Stub implementation of a in-memory CacheItemPool
- *
+ * Stub implementation of a in-memory CacheItemPool.
  */
 class ArrayPool implements CacheItemPoolInterface
 {
@@ -35,8 +33,9 @@ class ArrayPool implements CacheItemPoolInterface
         return isset($this->data[$key]) ? $this->data[$key] : new CacheItem($key);
     }
 
-    public function getItems(array $keys = array())
-    {}
+    public function getItems(array $keys = [])
+    {
+    }
 
     /**
      * @param string $key
@@ -63,17 +62,22 @@ class ArrayPool implements CacheItemPoolInterface
     }
 
     public function clear()
-    {}
+    {
+    }
 
     public function deleteItem($key)
-    {}
+    {
+    }
 
     public function deleteItems(array $keys)
-    {}
+    {
+    }
 
     public function saveDeferred(CacheItemInterface $item)
-    {}
+    {
+    }
 
     public function commit()
-    {}
+    {
+    }
 }
