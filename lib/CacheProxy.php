@@ -65,6 +65,7 @@ class CacheProxy
             $result = call_user_func_array([$this->object, $name], $arguments);
 
             $item->set($result);
+            $item->expiresAfter($this->lifetime);
 
             $this->cache->save($item);
         }

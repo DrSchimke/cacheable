@@ -41,12 +41,11 @@ class CacheableTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_use_cache()
     {
-        $this->markTestIncomplete();
         // arrange
-        $cacheProvider = new ArrayCache();
+        $cache = new ArrayPool();
 
         $sut = new CacheableClass();
-        $sut->setCache($cacheProvider);
+        $sut->setCache($cache);
 
         // act
         $a = $sut->cache()->getDouble(123);
@@ -66,19 +65,18 @@ class CacheableTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_use_cache_lifetime()
     {
-        $this->markTestIncomplete();
         // arrange
-        $cacheProvider = new ArrayCache();
+        $cache = new ArrayPool();
         $lifetime = 300;
 
         $sut = new CacheableClass();
-        $sut->setCache($cacheProvider, $lifetime);
+        $sut->setCache($cache, $lifetime);
 
         // act
         $sut->cache()->getDouble(123);
 
         // assert
-        $this->assertEquals($lifetime, $cacheProvider->lastLifetime);
+        $this->assertEquals($lifetime, $cache->lastLifetime);
     }
 
     /**
@@ -86,21 +84,20 @@ class CacheableTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_use_local_cache_lifetime_if_given()
     {
-        $this->markTestIncomplete();
         // arrange
-        $cacheProvider = new ArrayCache();
+        $cache = new ArrayPool();
 
         $lifetime = 300;
         $shorterLifetime = 60;
 
         $sut = new CacheableClass();
-        $sut->setCache($cacheProvider, $lifetime);
+        $sut->setCache($cache, $lifetime);
 
         // act
         $sut->cache($shorterLifetime)->getDouble(123);
 
         // assert
-        $this->assertEquals($shorterLifetime, $cacheProvider->lastLifetime);
+        $this->assertEquals($shorterLifetime, $cache->lastLifetime);
     }
 
     /**
@@ -108,23 +105,22 @@ class CacheableTest extends \PHPUnit_Framework_TestCase
      */
     public function it_should_use_correct_cache_keys()
     {
-        $this->markTestIncomplete();
         // arrange
-        $cacheProvider = new ArrayCache();
+        $cache = new ArrayPool();
 
         $sut = new CacheableClass();
-        $sut->setCache($cacheProvider);
+        $sut->setCache($cache);
 
         // act
         $a1 = $sut->cache()->getDouble(123);
-        $key1 = $cacheProvider->lastId;
+        $key1 = $cache->lastId;
         $a2 = $sut->cache()->getDouble(123);
-        $key2 = $cacheProvider->lastId;
+        $key2 = $cache->lastId;
 
         $b1 = $sut->cache()->getDouble(234);
-        $key3 = $cacheProvider->lastId;
+        $key3 = $cache->lastId;
         $b2 = $sut->cache()->getDouble(234);
-        $key4 = $cacheProvider->lastId;
+        $key4 = $cache->lastId;
 
         // assert
         $this->assertEquals(246, $a1);
