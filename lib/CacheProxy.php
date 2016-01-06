@@ -11,32 +11,28 @@
 
 namespace Sci\Cacheable;
 
-use Doctrine\Common\Cache\Cache;
+use Psr\Cache\CacheItemPoolInterface;
 
 class CacheProxy
 {
     /** @var bool */
     private static $debug = false;
 
-    /** @var Cache */
+    /** @var CacheItemPoolInterface */
     private $cache;
 
-    /**
-     * @var mixed
-     */
+    /** @var mixed */
     private $object;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $lifetime;
 
     /**
-     * @param CacheProvider $cache
+     * @param CacheItemPoolInterface $cache
      * @param mixed         $object
      * @param int           $lifetime
      */
-    public function __construct(Cache $cache, Cacheable $object, $lifetime = 0)
+    public function __construct(CacheItemPoolInterface $cache, Cacheable $object, $lifetime = 0)
     {
         $this->cache = $cache;
         $this->object = $object;
@@ -61,12 +57,16 @@ class CacheProxy
     {
         $key = $this->createKey($name, $arguments);
 
-        if ($this->cache->contains($key)) {
-            $result = $this->cache->fetch($key);
+        $item = $this->cache->getItem($key);
+
+        if ($item->isHit()) {
+            $result = $item->get();
         } else {
             $result = call_user_func_array([$this->object, $name], $arguments);
 
-            $this->cache->save($key, $result, $this->lifetime);
+            $item->set($result);
+
+            $this->cache->save($item);
         }
 
         return $result;

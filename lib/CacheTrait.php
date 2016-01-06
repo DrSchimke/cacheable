@@ -11,21 +11,21 @@
 
 namespace Sci\Cacheable;
 
-use Doctrine\Common\Cache\Cache;
+use Psr\Cache\CacheItemPoolInterface;
 
 trait CacheTrait
 {
-    /** @var Cache */
+    /** @var CacheItemPoolInterface */
     private $cache;
 
     /** @var int */
     private $lifetime;
 
     /**
-     * @param Cache $cache
+     * @param CacheItemPoolInterface $cache
      * @param int   $lifetime
      */
-    public function setCache(Cache $cache, $lifetime = 0)
+    public function setCache(CacheItemPoolInterface $cache, $lifetime = 0)
     {
         $this->cache = $cache;
         $this->lifetime = $lifetime;
