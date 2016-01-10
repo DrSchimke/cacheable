@@ -1,6 +1,6 @@
 {
     "name": "sci/cacheable",
-    "description": "Caching library.",
+    "description": "Transparent caching library",
     "type": "library",
     "license": "MIT",
     "require": {
