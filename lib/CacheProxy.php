@@ -82,7 +82,7 @@ class CacheProxy
      */
     private function createKey($name, array $arguments)
     {
-        $key = sprintf('%s::%s(%s)', get_class($this->object), $name, serialize($arguments));
+        $key = sprintf('%s::%s[%s]', get_class($this->object), $name, serialize($arguments));
 
         return self::$debug ? $key : sha1($key);
     }

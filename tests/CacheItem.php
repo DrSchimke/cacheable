@@ -27,13 +27,15 @@ class CacheItem implements CacheItemInterface
     private $ttl;
 
     /**
-     * @param $key
+     * @param string $key
+     * @param mixed  $value
+     * @param bool   $hit
      */
-    public function __construct($key)
+    public function __construct($key, $value = null, $hit = false)
     {
         $this->key = $key;
-        $this->value = null;
-        $this->hit = false;
+        $this->value = $value;
+        $this->hit = $hit;
     }
 
     /**

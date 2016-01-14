@@ -15,6 +15,8 @@ use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Stub implementation of a in-memory CacheItemPool.
+ *
+ * Non-needed methods are not implemented.
  */
 class ArrayPool implements CacheItemPoolInterface
 {
@@ -30,11 +32,7 @@ class ArrayPool implements CacheItemPoolInterface
      */
     public function getItem($key)
     {
-        return isset($this->data[$key]) ? $this->data[$key] : new CacheItem($key);
-    }
-
-    public function getItems(array $keys = [])
-    {
+        return isset($this->data[$key]) ? new CacheItem($key, $this->data[$key], true) : new CacheItem($key);
     }
 
     /**
@@ -54,11 +52,15 @@ class ArrayPool implements CacheItemPoolInterface
      */
     public function save(CacheItemInterface $item)
     {
-        $this->data[$item->getKey()] = $item;
+        $this->data[$item->getKey()] = $item->get();
         $this->lastId = $item->getKey();
         $this->lastLifetime = $item->getTtl();
 
         return true;
+    }
+
+    public function getItems(array $keys = [])
+    {
     }
 
     public function clear()
