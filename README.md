@@ -67,6 +67,15 @@ $bar = $foo->cache()->bar(1, 2); // 2nd call's result comes directly from cache
 
 ### en détail
 
+* A class to be cached (`Foo` in example above) implements the interface `Sci\Cacheable` (which demands a method `cache()`).
+* This can be done using `Sci\CacheTrait` (which additially provides a method `setCache()`).
+* The method `setCache` gets as first argument a service, implementing `Psr\Cache\CacheItemPoolInterface`.
+    * This cache pool is the actual cache backend.
+    * An optional second argument to `setCache` is the default TTL (_time to live_) for all cached values.
+* To use the cache, method calls are _proxied_ through the method `cache()`, e.g. instead of `$foo->bar(1, 2)`, now we use `$foo->cache()->bar(1, 2)`.
+    * Method `cache()` returns `$this`, i.e. it acts in a transparent way (fluent interface).
+    * An optional argument for `cache()` allows to specify a TTL, different from the default one.
+
 ## Implementation
 
 ## License
