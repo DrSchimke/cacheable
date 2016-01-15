@@ -20,7 +20,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class ArrayPool implements CacheItemPoolInterface
 {
-    public $lastId;
+    public $lastKey;
     public $lastLifetime;
 
     private $data = [];
@@ -53,7 +53,7 @@ class ArrayPool implements CacheItemPoolInterface
     public function save(CacheItemInterface $item)
     {
         $this->data[$item->getKey()] = $item->get();
-        $this->lastId = $item->getKey();
+        $this->lastKey = $item->getKey();
         $this->lastLifetime = $item->getTtl();
 
         return true;

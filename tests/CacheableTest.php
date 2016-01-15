@@ -112,14 +112,14 @@ class CacheableTest extends \PHPUnit_Framework_TestCase
 
         // act
         $a1 = $sut->cache()->getDouble(123);
-        $key1 = $cache->lastId;
+        $key1 = $cache->lastKey;
         $a2 = $sut->cache()->getDouble(123);
-        $key2 = $cache->lastId;
+        $key2 = $cache->lastKey;
 
         $b1 = $sut->cache()->getDouble(234);
-        $key3 = $cache->lastId;
+        $key3 = $cache->lastKey;
         $b2 = $sut->cache()->getDouble(234);
-        $key4 = $cache->lastId;
+        $key4 = $cache->lastKey;
 
         // assert
         $this->assertEquals(246, $a1);
