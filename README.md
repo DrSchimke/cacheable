@@ -28,10 +28,10 @@ class Foo
 
 $foo = new Foo();
 
-$bar = $foo->bar(1, 2);
+$bar = $foo->bar(1, 2); // takes some amount of time
 
 // and later, again...
-$bar = $foo->bar(1, 2);
+$bar = $foo->bar(1, 2); // takes the same amount of time, again
 ```
 
 If there are no side-effects, the result of `Foo::bar()` is determined only by its arguments `$a` and `$b`.
@@ -59,11 +59,15 @@ class Foo implements Cacheable
 $foo = new Foo();
 $foo->setCache(/* any PSR-6 cache pool interface */)
 
-$bar = $foo->cache()->bar(1, 2);
+$bar = $foo->cache()->bar(1, 2); // 1st call takes some time, but now, the result is stored into cache
 
 // and later, again...
-$bar = $foo->cache()->bar(1, 2);
+$bar = $foo->cache()->bar(1, 2); // 2nd call's result comes directly from cache
 ```
+
+### en détail
+
+## Implementation
 
 ## License
 
