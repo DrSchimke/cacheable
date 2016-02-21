@@ -14,6 +14,8 @@ php:
   - hhvm
 
 install:
+  - echo "extension = redis.so" > redis.ini
+  - phpenv config-add redis.ini
   - composer self-update
   - composer update
 
