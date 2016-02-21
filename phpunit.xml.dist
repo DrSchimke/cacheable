@@ -3,11 +3,17 @@
 <phpunit bootstrap="vendor/autoload.php" colors="true">
 
     <testsuites>
-        <testsuite>
+        <testsuite name="unit">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-    
+
+    <groups>
+        <include>
+            <group>default</group>
+        </include>
+    </groups>
+
     <filter>
         <whitelist>
             <directory>lib</directory>
