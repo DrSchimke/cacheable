@@ -25,8 +25,8 @@ trait CacheTrait
 
     /**
      * @param CacheItemPoolInterface $cache
-     * @param int $lifetime
-     * @param string $namespace
+     * @param int                    $lifetime
+     * @param string                 $namespace
      */
     public function setCache(CacheItemPoolInterface $cache, $lifetime = null, $namespace = null)
     {
