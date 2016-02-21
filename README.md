@@ -1,6 +1,7 @@
 # Cacheable – A transparent caching library
 
 [![Build Status](https://secure.travis-ci.org/DrSchimke/cacheable.png)](http://travis-ci.org/DrSchimke/cacheable)
+[![Build Status](https://styleci.io/repos/39729797/shield)](https://styleci.io/repos/39729797)
 
 ## Installation
 
