@@ -33,7 +33,7 @@ class CacheProxy
      * @param mixed                  $object
      * @param int                    $lifetime
      */
-    public function __construct(CacheItemPoolInterface $cache, Cacheable $object, $lifetime = 0)
+    public function __construct(CacheItemPoolInterface $cache, Cacheable $object, $lifetime = null)
     {
         $this->cache = $cache;
         $this->object = $object;
