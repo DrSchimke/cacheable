@@ -131,6 +131,7 @@ class CacheableTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($key3, $key4);
         $this->assertNotEquals($key1, $key3);
     }
+
     /**
      * @test
      */

@@ -33,9 +33,9 @@ class CacheProxy
 
     /**
      * @param CacheItemPoolInterface $cache
-     * @param mixed $object
-     * @param int $lifetime
-     * @param string $namespace
+     * @param mixed                  $object
+     * @param int                    $lifetime
+     * @param string                 $namespace
      */
     public function __construct(CacheItemPoolInterface $cache, Cacheable $object, $lifetime = null, $namespace = null)
     {
