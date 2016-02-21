@@ -56,7 +56,7 @@ class CacheableTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(246, $b);
         $this->assertEquals(246, $c);
         $this->assertEquals(1, $sut->callcount);
-        $this->assertInstanceOf(CacheProxy::class, $sut->cache());
+        $this->assertInstanceOf(CacheProxy::CLASS_NAME, $sut->cache());
     }
 
     /**

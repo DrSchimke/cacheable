@@ -14,6 +14,8 @@ use Psr\Cache\CacheItemPoolInterface;
 
 class CacheProxy
 {
+    const CLASS_NAME = __CLASS__;
+
     /** @var bool */
     private static $debug = false;
 
