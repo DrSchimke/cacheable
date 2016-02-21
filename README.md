@@ -8,7 +8,7 @@
 Using [composer](https://getcomposer.org/download/):
 
 ```
-composer require sci/cacheable dev-master
+composer require sci/cacheable
 ```
 
 ## Usage
