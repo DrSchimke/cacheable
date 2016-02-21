@@ -131,4 +131,31 @@ class CacheableTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($key3, $key4);
         $this->assertNotEquals($key1, $key3);
     }
+    /**
+     * @test
+     */
+    public function it_should_use_namespaced_keys()
+    {
+        // arrange
+        $cache = new ArrayPool();
+
+        $sut1 = new CacheableClass();
+        $sut1->setCache($cache, null, 'ns1');
+
+        $sut2 = new CacheableClass();
+        $sut2->setCache($cache, null, 'ns2');
+
+        // act
+        $a1 = $sut1->cache()->getDouble(123);
+        $key1 = $cache->lastKey;
+
+        $a2 = $sut2->cache()->getDouble(123);
+        $key2 = $cache->lastKey;
+
+        // assert
+        $this->assertEquals(246, $a1);
+        $this->assertEquals(246, $a2);
+
+        $this->assertNotEquals($key1, $key2);
+    }
 }

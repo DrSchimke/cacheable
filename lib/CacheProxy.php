@@ -28,16 +28,21 @@ class CacheProxy
     /** @var int */
     private $lifetime;
 
+    /** @var null|string */
+    private $namespace;
+
     /**
      * @param CacheItemPoolInterface $cache
-     * @param mixed                  $object
-     * @param int                    $lifetime
+     * @param mixed $object
+     * @param int $lifetime
+     * @param string $namespace
      */
-    public function __construct(CacheItemPoolInterface $cache, Cacheable $object, $lifetime = null)
+    public function __construct(CacheItemPoolInterface $cache, Cacheable $object, $lifetime = null, $namespace = null)
     {
         $this->cache = $cache;
         $this->object = $object;
         $this->lifetime = $lifetime;
+        $this->namespace = $namespace;
     }
 
     /**
@@ -84,7 +89,7 @@ class CacheProxy
      */
     private function createKey($name, array $arguments)
     {
-        $key = sprintf('%s::%s[%s]', get_class($this->object), $name, serialize($arguments));
+        $key = sprintf('%s[%s]::%s[%s]', get_class($this->object), $this->namespace, $name, serialize($arguments));
 
         return self::$debug ? $key : sha1($key);
     }

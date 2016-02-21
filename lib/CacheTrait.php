@@ -20,14 +20,19 @@ trait CacheTrait
     /** @var int */
     private $lifetime;
 
+    /** @var string */
+    private $namespace;
+
     /**
      * @param CacheItemPoolInterface $cache
-     * @param int                    $lifetime
+     * @param int $lifetime
+     * @param string $namespace
      */
-    public function setCache(CacheItemPoolInterface $cache, $lifetime = null)
+    public function setCache(CacheItemPoolInterface $cache, $lifetime = null, $namespace = null)
     {
         $this->cache = $cache;
         $this->lifetime = $lifetime;
+        $this->namespace = $namespace;
     }
 
     /**
@@ -47,6 +52,6 @@ trait CacheTrait
      */
     private function createCacheProxy($lifetime)
     {
-        return new CacheProxy($this->cache, $this, is_null($lifetime) ? $this->lifetime : $lifetime);
+        return new CacheProxy($this->cache, $this, is_null($lifetime) ? $this->lifetime : $lifetime, $this->namespace);
     }
 }
